@@ -27,7 +27,7 @@ const firstGenerationPokemon = [
   'Raichu',
   'Sandshrew',
   'Sandslash',
-  'Nidoran♀',
+  'Nidoran',
   'Nidorina',
   'Nidoqueen',
   'Nidoran♂',
@@ -48,7 +48,7 @@ const firstGenerationPokemon = [
   'Parasect',
   'Venonat',
   'Venomoth',
-  'Digglet',
+  'Diglett',
   'Dugtrio',
   'Meowth',
   'Persian',
@@ -81,7 +81,7 @@ const firstGenerationPokemon = [
   'Slowbro',
   'Magnemite',
   'Magneton',
-  "Farfetch'd",
+  "Farfetchd",
   'Doduo',
   'Dodrio',
   'Seel',
@@ -153,11 +153,15 @@ const firstGenerationPokemon = [
 ];
 
 function getPokemons(n) {
-    const shuffled = firstGenerationPokemon.sort(()=> {
-       return 0.5 - Math.random()
-    })
-    const selected = shuffled.slice(0, n);
-    console.log(selected);
+  const shuffled = firstGenerationPokemon.sort(() => {
+    return 0.5 - Math.random();
+  });
+  const selected = shuffled.slice(0, n);
+  const results = selected.map((pokemon) => {
+    return pokemon.toLowerCase();
+  });
+
+  return results;
 }
 
 export default getPokemons;
