@@ -1,3 +1,82 @@
-h1 {
-    color: red;
+@font-face {
+  font-family: 'font-header';
+  src: url('../public/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'font-paragraph';
+  src: url('../public/fonts/Handlee/Handlee-Regular.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'font-header';
+}
+
+p {
+  font-family: 'font-paragraph';
+}
+
+body {
+  background-color: #3e6623;
+}
+
+header {
+    text-align: center;
+    padding: 5%;
+    h1 {
+        color:rgb(27, 27, 27);
+    }
+    p {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .scoreBox {
+        padding: 2rem;
+    }
+}
+
+.pokeContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding: 0 5%;
+  gap: 2%;
+
+  .pokeBox {
+    background-color: #8ab661;
+    border-radius: 5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    transition: 0.3s;
+    &:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+    h2 {
+      font-weight: bold;
+      color: rgb(51, 51, 51);
+      letter-spacing: 3px;
+      font-size: 2rem;
+    }
+    img {
+      background-color: #eeeddf;
+      border-radius: 5%;
+    }
+  }
 }
