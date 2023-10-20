@@ -27,7 +27,6 @@ const firstGenerationPokemon = [
   'Raichu',
   'Sandshrew',
   'Sandslash',
-  'Nidoran',
   'Nidorina',
   'Nidoqueen',
   'Nidoran-m',

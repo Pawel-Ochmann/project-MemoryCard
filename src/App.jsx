@@ -8,6 +8,7 @@ function App() {
   const [bestScore, setBestScore] = useState(
     parseInt(localStorage.getItem('bestScore', 10)) || 0
   );
+  const [difficulty, setDifficulty] = useState(parseInt(localStorage.getItem('difficulty', 10)) || 6);
 
   // eslint-disable-next-line react/prop-types
   function PokemonBox({ name, pokemonImage }) {
@@ -24,30 +25,48 @@ function App() {
     );
   }
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   const clickPokemon = (key) => {
+    if (pokeClicked.length > bestScore) {
+      localStorage.setItem('bestScore', pokeClicked.length);
+    }
     if (
       pokeClicked.find((e) => {
         return e === key;
       })
     ) {
-      localStorage.setItem('bestScore', pokeClicked.length);
       location.reload();
+      return;
     }
 
     const clickedArray = [...pokeClicked];
     clickedArray.push(key);
     setPokeClicked(clickedArray);
+    const shuffledPokeArray = shuffleArray([...pokeArray]);
+    setPokeArray(shuffledPokeArray);
   };
 
-  const resetBestScore = (e)=> {
+  const resetBestScore = (e) => {
     e.preventDefault();
     localStorage.setItem('bestScore', 0);
-    location.reload();
-  }
+    setBestScore(0);
+  };
 
+  const handleDifficultyInput = (e) => {
+    localStorage.setItem('difficulty', e.target.value);
+    setPokeClicked([]);
+    setDifficulty(e.target.value);
+  };
 
   useEffect(() => {
-    const pokeList = getPokemons(6);
+    const pokeList = getPokemons(difficulty);
     const fetchData = async () => {
       const dataPromises = pokeList.map(async (pokeName) => {
         try {
@@ -72,7 +91,7 @@ function App() {
       setPokeArray(filteredData);
     };
     fetchData();
-  }, []);
+  }, [difficulty]);
 
   return (
     <>
@@ -81,6 +100,19 @@ function App() {
         <p>
           Get points by clicking on an image but don't click on any more than
           once!
+        </p>
+        <p>
+          Choose difficulty level:{' '}
+          <input
+            type='range'
+            min={6}
+            max={24}
+            step={6}
+            value={difficulty}
+            onChange={(e) => {
+              handleDifficultyInput(e);
+            }}
+          />
         </p>
         <div className='scoreBox'>
           <p>Actual score:{pokeClicked.length}</p>

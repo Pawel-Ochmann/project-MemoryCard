@@ -29,28 +29,50 @@ p {
   font-family: 'font-paragraph';
 }
 
+button {
+  font-family: 'font-paragraph';
+  font-size: 1.3rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  padding: 0.3rem 0.4rem 0 0.4rem;
+  background-color: #8ab661;
+  line-height: 2rem;
+  transition: 0.3s;
+  margin-top: 1rem;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+}
+
+input[type='range'] {
+  accent-color: #8ab661;
+}
+
 body {
   background-color: #3e6623;
 }
 
 header {
-    text-align: center;
-    padding: 5%;
-    h1 {
-        color:rgb(27, 27, 27);
-    }
-    p {
-        font-size: 1.5rem;
-        font-weight: 700;
-    }
-    .scoreBox {
-        padding: 2rem;
-    }
+  text-align: center;
+  padding: 5%;
+  h1 {
+    color: rgb(27, 27, 27);
+  }
+  p {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .scoreBox {
+    padding: 2rem;
+  }
 }
 
 .pokeContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 0 5%;
   gap: 2%;
 
@@ -72,11 +94,17 @@ header {
       font-weight: bold;
       color: rgb(51, 51, 51);
       letter-spacing: 3px;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     img {
       background-color: #eeeddf;
       border-radius: 5%;
     }
+  }
+}
+
+@media (min-width:1400px) {
+  .pokeContainer {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
